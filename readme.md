@@ -4,6 +4,12 @@ Este es el codigo del proyecto final de la asignatura Sistemas de
 información no estructura del Master Universitario en Ingeniería
 Informática.
 
+El objetivo de este proyecto es generar un sistema de clasificación
+que dado un tweet determine si contiene contenido sexista o no, tal y como 
+se describe en la Tarea 1 de [EXIST 2022](http://nlp.uned.es/exist2022/), 
+a partir del texto del tweet, y para los corpus proporcionados 
+por la organización.
+
 
 ## Comenzando 🚀
 
