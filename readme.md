@@ -17,13 +17,29 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 
 ### Pre-requisitos 📋
-
-_Que cosas necesitas para instalar el software y como instalarlas_
+Es necesario tener instalada la libreria _Pandas_. En el caso de que no lo
+tengas instalado, _Pandas_ se distribuye a
+través de _pip_ como una _wheel_, lo que significa que debes ejecutar los 
+siguientes comandos en tu terminal.
 
 ```
-Da un ejemplo
+pip install wheel
+pip install pandas
 ```
-
+Tambien debemos tener instalada la libreria _spacy_ y _sklearn_
+```
+pip install spacy
+pip install sklearn
+```
+Finalmente instalamos el modulo _es_core_news_sm_ de spacy
+```
+python -m spacy download es_core_news_sm
+```
+Aunque he tenido problemas con la instalación de este modulo debido a la ruta
+de instalación de mi python, y he tenido que utilizar el siguiente comando:
+```
+'C:\Users\Victor\AppData\Local\Programs\Python\Python310\python.exe' -m spacy download es_core_news_sm
+```
 ### Instalación y Configuración 🔧
 
 Una vez descargado el proyecto encontramos la siguiente estructura de carpetas

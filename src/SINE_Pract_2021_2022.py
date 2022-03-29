@@ -44,7 +44,7 @@ def processEXISTTraining(pathTraining, pathTest):
     print(dataset.shape)
 
     #Cargamos el modelo del lenguaje para el espanol
-    nlp= spacy.load('es_core_news_sm')     
+    nlp= spacy.load('es_core_news_sm')
     
     #Procesamos los textos del dataset de EXIST
     print("Procesando comentarios para extraer sus palabras")
@@ -81,6 +81,6 @@ def processEXISTTraining(pathTraining, pathTest):
     
 
 if __name__ == '__main__':
-    pathTraining = "dataset/EXIST2021_training.tsv"
-    pathTest = "dataset/EXIST2021_test_labeled.tsv"
+    pathTraining = "./data/EXIST2021_training_100.tsv"
+    pathTest = "./data/EXIST2021_test_labeled_100.tsv"
     processEXISTTraining(pathTraining, pathTest)
