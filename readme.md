@@ -63,12 +63,13 @@ la aplicación
 
 ## Funcionamiento ⚙️
 
-_Explica como ejecutar el sistema_
+Una vez, hemos completado los pasos mostrados en la sección de Prerequisitos 
+[Prerequisitos](#pre-requisitos_📋)
 
 
 ## Autores ✒️
 
-* **Jorge Carrillo de Albornoz** - *Algoritmo base*
+* **Jorge Carrillo de Albornoz** - *Clasificador basico*
 * **Victor Fagúndez Poyo** - *Modificaciones al algoritmo base* - [vincitori-dev](https://github.com/vincitori-dev)
 
 
