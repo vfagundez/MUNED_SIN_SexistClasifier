@@ -63,8 +63,18 @@ la aplicación
 
 ## Funcionamiento ⚙️
 
-Una vez, hemos completado los pasos mostrados en la sección de Prerequisitos 
-[Prerequisitos](#pre-requisitos-)
+Una vez, hemos completado los pasos mostrados en la sección de
+[Pre-requisitos](#pre-requisitos-) podemos ejecutar el script.
+Para ello navegamos a la carpeta src desde la ruta principal del proyecto, 
+para ello desde la terminal ejecutamos el comando:
+```
+cd src
+```
+Una vez nos encontramos en la ruta en la que se encuentra el script ejecutamos
+el siguiente comando para ejecutarlo:
+```
+py SINE_Pract_2021_2022.py
+```
 
 
 ## Autores ✒️
