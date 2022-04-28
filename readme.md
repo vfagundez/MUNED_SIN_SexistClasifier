@@ -45,11 +45,16 @@ de instalación de mi python, y he tenido que utilizar el siguiente comando:
 Una vez descargado el proyecto encontramos la siguiente estructura de carpetas
 ```
 .
+├── data
+├── docs
 ├── etc
 ├── logs
 ├── src
 └── readme.md
 ```    
+* en la carpeta _data_ encontraremos los archivos con los datos de entrenamiento
+ y test
+* en la carpeta _docs_ encontraremos los archivos de configuración
 * en la carpeta _etc_ encontraremos los archivos de configuración
 * en la carpeta de _logs_ encontraremos todos los archivos de registro de
 la aplicación
@@ -63,8 +68,8 @@ _Explica como ejecutar el sistema_
 
 ## Autores ✒️
 
-
-* **Victor Fagúndez Poyo** - *Trabajo Inicial* - [vincitori-dev](https://github.com/vincitori-dev)
+* **Jorge Carrillo de Albornoz** - *Algoritmo base*
+* **Victor Fagúndez Poyo** - *Modificaciones al algoritmo base* - [vincitori-dev](https://github.com/vincitori-dev)
 
 
 
