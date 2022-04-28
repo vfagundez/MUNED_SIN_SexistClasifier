@@ -64,7 +64,7 @@ la aplicación
 ## Funcionamiento ⚙️
 
 Una vez, hemos completado los pasos mostrados en la sección de Prerequisitos 
-[Prerequisitos](#pre-requisitos_📋)
+[Prerequisitos](#pre-requisitos-)
 
 
 ## Autores ✒️
