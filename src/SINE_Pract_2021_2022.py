@@ -7,6 +7,8 @@ o puede dar problemas al leer ciertos caracteres del dataset de EXIST
 @author: Jorge Carrillo de Albornoz
 '''
 
+import os
+
 import pandas as pd
 import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -81,6 +83,19 @@ def processEXISTTraining(pathTraining, pathTest):
     
 
 if __name__ == '__main__':
-    pathTraining = "./data/EXIST2021_training_100.tsv"
-    pathTest = "./data/EXIST2021_test_labeled_100.tsv"
+    pathTraining = "../data/EXIST2021_training_100.tsv"
+    #Comprobamos la existencia del archivo de entrenamiento
+    if(os.path.exists(pathTraining)):
+        print("El archivo de entrenamiento existe")
+    else:
+        print("El archivo de entrenamiento no existe")
+        exit()
+    pathTest = "../data/EXIST2021_test_labeled_100.tsv"
+    #Comprobamos la existencia del archivo de test
+    if(os.path.exists(pathTest)):
+        print("El archivo de test existe")
+    else:
+        print("El archivo de test no existe")
+        exit()
+
     processEXISTTraining(pathTraining, pathTest)
