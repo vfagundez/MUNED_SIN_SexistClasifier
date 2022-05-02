@@ -42,6 +42,27 @@ def isUser(word):
     else:
         return True
 
+#Funcion para determinar si una palabra es una url mediante la comprobación de si tiene http
+def isUrl(word):
+    if word.find("http") != -1:
+        return False
+    else:
+        return True
+
+#Funcion para sustituir los acentos por sus equivalentes sin acentos
+def replaceAcent(text):
+    text = text.replace("á", "a")
+    text = text.replace("é", "e")
+    text = text.replace("í", "i")
+    text = text.replace("ó", "o")
+    text = text.replace("ú", "u")
+    text = text.replace("Á", "A")
+    text = text.replace("É", "E")
+    text = text.replace("Í", "I")
+    text = text.replace("Ó", "O")
+    text = text.replace("Ú", "U")
+    return text
+
 #Funcion para limpiar los datos
 def cleanData(data):
     #calculamos la longitud del array
@@ -93,9 +114,13 @@ def cleanData(data):
         data[i] = data[i].replace(" ", "")
         #eliminamos stopwords
         data[i] = " ".join([word for word in data[i].split() if word not in (stop)])
+        #eliminamos acentos
+        data[i] = replaceAcent(data[i])
     #filtramos todos los elementos '' de la lista
     data = list(filter(None, data))
     data = list(filter(isUser, data))
+    data = list(filter(isUrl, data))
+
     return data
 
 
@@ -144,15 +169,7 @@ def processEXISTTraining(pathTraining, pathTest):
     tfidf = TfidfVectorizer(tokenizer=dummy, preprocessor=dummy)
     tfidf_matrix = tfidf.fit_transform(lstDocsEXIST)
     lstFeaturesTFIDFByComment = tfidf_matrix.toarray()
-    #print(lstDocsEXIST) #Mostramos la matriz tf idf
-    print("LIMPIANDO")
-    
     print(lstDocsEXIST)
-    #data['text'] = data['text'].apply(lambda x: x.lower())
-    #print(lstDocsEXIST.apply(lambda x: x.lower())) #Mostramos la matriz tf idf en minusculas
-    #print("tfidf")#añadido
-    #print(tfidf)#añadido
-    
     print(tfidf_matrix)#añadido
     print(len(lstFeaturesTFIDFByComment))
     
