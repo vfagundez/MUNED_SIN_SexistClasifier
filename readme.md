@@ -40,6 +40,14 @@ de instalación de mi python, y he tenido que utilizar el siguiente comando:
 ```
 'C:\Users\Victor\AppData\Local\Programs\Python\Python310\python.exe' -m spacy download es_core_news_sm
 ```
+Para las modificaciones introducidas para el algoritmo base es necesario tener
+instalada la libreria nltk que podemos instalar en nuestro entorno con la 
+instrucción siguiente:
+```
+pip install nltk
+```
+Esta librería nos ayudará a eliminar las stopwords presentes en los datasets 
+utilizados.
 ### Instalación y Configuración 🔧
 
 Una vez descargado el proyecto encontramos la siguiente estructura de carpetas

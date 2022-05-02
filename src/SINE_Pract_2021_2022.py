@@ -18,6 +18,11 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
 
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+stop = stopwords.words('spanish')
+
 #Funcion que dado un documento de Spacy devuelve una lista de palabras.
 def getToken(docSpacy):
     listTokens = []
@@ -29,6 +34,70 @@ def getToken(docSpacy):
 #Funcion tonta que devuelve el documento pasado por parametro.        
 def dummy(doc):
     return doc
+
+#Funcion para determinar si una palabra es el nombre de un usuario mediante la comprobación de si tiene @
+def isUser(word):
+    if word.find("@") != -1:
+        return False
+    else:
+        return True
+
+#Funcion para limpiar los datos
+def cleanData(data):
+    #calculamos la longitud del array
+    lenData = len(data)
+    for i in range(lenData):
+        #Pasamos a minusculas
+        data[i] = data[i].lower()
+        #Eliminamos la puntuación
+        data[i] = data[i].replace(".", "")
+        data[i] = data[i].replace(",", "")
+        data[i] = data[i].replace(";", "")  
+        data[i] = data[i].replace(":", "")
+        data[i] = data[i].replace("!", "")
+        data[i] = data[i].replace("?", "")
+        data[i] = data[i].replace("¿", "")
+        data[i] = data[i].replace("¡", "")
+        data[i] = data[i].replace("(", "")
+        data[i] = data[i].replace(")", "")
+        data[i] = data[i].replace("[", "")
+        data[i] = data[i].replace("]", "")
+        data[i] = data[i].replace("{", "")
+        data[i] = data[i].replace("}", "")
+        data[i] = data[i].replace("-", "")
+        data[i] = data[i].replace("—", "")
+        data[i] = data[i].replace("_", "")
+        data[i] = data[i].replace("/", "")
+        data[i] = data[i].replace("\\", "")
+        data[i] = data[i].replace("*", "")
+        data[i] = data[i].replace("+", "")
+        data[i] = data[i].replace("=", "")
+        data[i] = data[i].replace("|", "")
+        data[i] = data[i].replace("<", "")
+        data[i] = data[i].replace(">", "")
+        data[i] = data[i].replace("#", "")
+        data[i] = data[i].replace("$", "")
+        data[i] = data[i].replace("%", "")
+        data[i] = data[i].replace("&", "")
+        data[i] = data[i].replace("/", "")
+        data[i] = data[i].replace("\"", "")
+        data[i] = data[i].replace("'", "")
+        data[i] = data[i].replace("“", "")
+        data[i] = data[i].replace("”", "")
+        data[i] = data[i].replace("‘", "")
+        data[i] = data[i].replace("’", "")
+        data[i] = data[i].replace("“", "")
+        data[i] = data[i].replace("”", "")
+        data[i] = data[i].replace("◆", "")
+        #eliminar espacios en blanco
+        data[i] = data[i].replace(" ", "")
+        #eliminamos stopwords
+        data[i] = " ".join([word for word in data[i].split() if word not in (stop)])
+    #filtramos todos los elementos '' de la lista
+    data = list(filter(None, data))
+    data = list(filter(isUser, data))
+    return data
+
 
 #Funcion principal para classificar comentarios en base a su sexismo
 def processEXISTTraining(pathTraining, pathTest):
@@ -56,7 +125,17 @@ def processEXISTTraining(pathTraining, pathTest):
     for row in dataset.itertuples(index=False):
         #Comentar la siguiente linea si tarda mucho
         print("Generando documento exist "+ str(index) + "; claseObjetiva: " + row.task1 + "; texto: " +row.text )
-        lstDocsEXIST.append(getToken(nlp(row.text)))
+        #obtenemos las palabras del comentario
+        words = getToken(nlp(row.text))
+        print(words)
+        print("Longitud del documento: " + str(len(words)))
+        #limpiamos los datos
+        print("Limpiando datos")
+        words = cleanData(words)
+        print(words)
+        print("Longitud del documento: " + str(len(words)))
+        #exit()
+        lstDocsEXIST.append(words)
         lstObjetiveClass.append(row.task1)
         index=index+1
    
@@ -65,6 +144,16 @@ def processEXISTTraining(pathTraining, pathTest):
     tfidf = TfidfVectorizer(tokenizer=dummy, preprocessor=dummy)
     tfidf_matrix = tfidf.fit_transform(lstDocsEXIST)
     lstFeaturesTFIDFByComment = tfidf_matrix.toarray()
+    #print(lstDocsEXIST) #Mostramos la matriz tf idf
+    print("LIMPIANDO")
+    
+    print(lstDocsEXIST)
+    #data['text'] = data['text'].apply(lambda x: x.lower())
+    #print(lstDocsEXIST.apply(lambda x: x.lower())) #Mostramos la matriz tf idf en minusculas
+    #print("tfidf")#añadido
+    #print(tfidf)#añadido
+    
+    print(tfidf_matrix)#añadido
     print(len(lstFeaturesTFIDFByComment))
     
     #Configuramos el modelo de SVM para entrenar/predecir
