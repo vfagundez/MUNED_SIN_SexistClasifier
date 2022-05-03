@@ -161,11 +161,11 @@ def processEXISTTraining(pathTraining, pathTest):
         #words2 = list(nltk.bigrams(words))
         #print(words2)
         #Generamos trigramas a partir de las palabras
-        words3 = list(nltk.trigrams(words))
-        print(words3)
+        #words3 = list(nltk.trigrams(words))
+        #print(words3)
         #print("Longitud del documento: " + str(len(words)))
         #exit()
-        lstDocsEXIST.append(words3)
+        lstDocsEXIST.append(words)
         lstObjetiveClass.append(row.task1)
         index=index+1
    
