@@ -146,21 +146,26 @@ def processEXISTTraining(pathTraining, pathTest):
     print("Procesando comentarios para extraer sus palabras")
     lstDocsEXIST = []
     lstObjetiveClass = []
-    index=1    
+    index=1
     for row in dataset.itertuples(index=False):
         #Comentar la siguiente linea si tarda mucho
-        print("Generando documento exist "+ str(index) + "; claseObjetiva: " + row.task1 + "; texto: " +row.text )
+        #print("Generando documento exist "+ str(index) + "; claseObjetiva: " + row.task1 + "; texto: " +row.text )
         #obtenemos las palabras del comentario
         words = getToken(nlp(row.text))
-        print(words)
-        print("Longitud del documento: " + str(len(words)))
+        #print("Longitud del documento: " + str(len(words)))
         #limpiamos los datos
-        print("Limpiando datos")
+        #print("Limpiando datos")
         words = cleanData(words)
-        print(words)
-        print("Longitud del documento: " + str(len(words)))
+        #print(words)
+        #Generamos bigramas a partir de las palabras
+        #words2 = list(nltk.bigrams(words))
+        #print(words2)
+        #Generamos trigramas a partir de las palabras
+        words3 = list(nltk.trigrams(words))
+        print(words3)
+        #print("Longitud del documento: " + str(len(words)))
         #exit()
-        lstDocsEXIST.append(words)
+        lstDocsEXIST.append(words3)
         lstObjetiveClass.append(row.task1)
         index=index+1
    
@@ -169,7 +174,7 @@ def processEXISTTraining(pathTraining, pathTest):
     tfidf = TfidfVectorizer(tokenizer=dummy, preprocessor=dummy)
     tfidf_matrix = tfidf.fit_transform(lstDocsEXIST)
     lstFeaturesTFIDFByComment = tfidf_matrix.toarray()
-    print(lstDocsEXIST)
+    #print(lstDocsEXIST)
     print(tfidf_matrix)#añadido
     print(len(lstFeaturesTFIDFByComment))
     
